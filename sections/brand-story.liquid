@@ -1,0 +1,110 @@
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+{%- style -%}
+  .brand-story-section {
+    background-color: #FFF8DC;
+    border-left: 6px solid #F5A623;
+    border-radius: 8px;
+    padding: {{ section.settings.padding_top }}px 40px {{ section.settings.padding_bottom }}px 40px;
+    margin: 20px auto;
+    max-width: 860px;
+    box-shadow: 0 4px 18px rgba(245, 166, 35, 0.15);
+  }
+
+  .brand-story-section .brand-story__title {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    font-size: 2.6rem;
+    color: #8B5E00;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .brand-story-section .brand-story__text {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    font-size: 1.35rem;
+    color: #5C3D00;
+    line-height: 2;
+    text-align: center;
+  }
+
+  .brand-story-section .brand-story__icon {
+    text-align: center;
+    font-size: 2.4rem;
+    margin-bottom: 14px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .brand-story-section {
+      padding: 30px 20px;
+      margin: 12px 16px;
+    }
+
+    .brand-story-section .brand-story__title {
+      font-size: 2rem;
+    }
+
+    .brand-story-section .brand-story__text {
+      font-size: 1.15rem;
+    }
+  }
+{%- endstyle -%}
+
+<div class="page-width">
+  <div class="brand-story-section">
+    <div class="brand-story__icon">👨‍👧‍👦</div>
+    <h2 class="brand-story__title">{{ section.settings.title }}</h2>
+    <p class="brand-story__text">{{ section.settings.story_text }}</p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Brand Story",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Why Proud Daddy?"
+    },
+    {
+      "type": "textarea",
+      "id": "story_text",
+      "label": "Brand Story",
+      "default": "We all want to express ourselves somehow. But when we become parents, our kids become one of the most important things in our lives — they make us happy and help us through the hard stuff. Being with them always, feeling unique and special... that is why we created Proud Daddy — to give you the opportunity to wear them close."
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 20,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 20,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Story"
+    }
+  ]
+}
+{% endschema %}
