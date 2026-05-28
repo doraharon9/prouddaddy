@@ -1,9 +1,10 @@
-{{ 'product-showcase.css' | asset_url | stylesheet_tag }}
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@200;300;400&display=swap" rel="stylesheet">
 
 {%- style -%}
   .product-showcase {
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: #FAF7F2;
   }
 {%- endstyle -%}
 
@@ -16,7 +17,7 @@
       {%- endif -%}
       {%- if section.settings.show_all_link and section.settings.collection != blank -%}
         <a href="{{ collections[section.settings.collection].url }}" class="product-showcase__view-all">
-          {{ section.settings.view_all_label | default: 'Shop all' }} &rarr;
+          {{ section.settings.view_all_label | default: 'Shop all' }}
         </a>
       {%- endif -%}
     </div>
@@ -36,7 +37,7 @@
 
               {%- comment -%} Sale badge {%- endcomment -%}
               {%- if product.compare_at_price > product.price -%}
-                <span class="product-showcase__badge">SALE</span>
+                <span class="product-showcase__badge">Sale</span>
               {%- endif -%}
 
               {%- comment -%} Primary image {%- endcomment -%}
@@ -53,7 +54,7 @@
                 {{ 'product-1' | placeholder_svg_tag: 'product-showcase__image product-showcase__image--primary placeholder-svg' }}
               {%- endif -%}
 
-              {%- comment -%} Secondary (hover) image — shown on hover if a second image exists {%- endcomment -%}
+              {%- comment -%} Secondary (hover) image {%- endcomment -%}
               {%- if product.images.size > 1 -%}
                 <img
                   class="product-showcase__image product-showcase__image--secondary"
@@ -117,45 +118,54 @@
 
 <style>
   /* =============================================
-     Product Showcase Section Styles
-     Inspired by Oscar de la Renta product grid
+     Proud Daddy – Product Showcase Section
+     Design system: Playfair Display headings,
+     Nunito body, navy/gold/cream palette
      ============================================= */
 
+  .product-showcase {
+    background: #FAF7F2;
+  }
+
+  /* --- Section header: title + shop-all link --- */
   .product-showcase__header {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    margin-bottom: 28px;
+    margin-bottom: 36px;
   }
 
   .product-showcase__title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    color: #1B2B4B;
+    letter-spacing: 0.01em;
     margin: 0;
   }
 
   .product-showcase__view-all {
-    font-size: 0.85rem;
-    letter-spacing: 0.08em;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     text-decoration: none;
-    color: inherit;
-    border-bottom: 1px solid currentColor;
+    color: #1B2B4B;
+    border-bottom: 1px solid #D4973A;
     padding-bottom: 2px;
-    transition: opacity 0.2s ease;
+    transition: color 0.2s ease, border-color 0.2s ease;
   }
 
   .product-showcase__view-all:hover {
-    opacity: 0.6;
+    color: #D4973A;
   }
 
-  /* Grid — 4 columns on desktop, 2 on tablet, 1 on mobile */
+  /* --- Grid layout --- */
   .product-showcase__grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    gap: 24px;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -164,7 +174,7 @@
   @media screen and (max-width: 989px) {
     .product-showcase__grid {
       grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
+      gap: 18px;
     }
   }
 
@@ -175,27 +185,23 @@
     }
   }
 
-  /* Card */
+  /* --- Card --- */
   .product-showcase__card {
     display: block;
     text-decoration: none;
     color: inherit;
-    background: #f9f9f9;
+    background: #FAF7F2;
   }
 
-  .product-showcase__card:hover .product-showcase__product-title {
-    text-decoration: underline;
-  }
-
-  /* Image container — fixed aspect ratio so all cards line up */
+  /* --- Image container --- */
   .product-showcase__media-wrapper {
     position: relative;
     overflow: hidden;
     aspect-ratio: 3 / 4;
-    background: #efefef;
+    background: #EDE8DF;
   }
 
-  /* Both images fill the container */
+  /* Both images fill the container absolutely */
   .product-showcase__image {
     position: absolute;
     top: 0;
@@ -206,20 +212,19 @@
     display: block;
   }
 
-  /* Primary image is always visible */
+  /* Primary image: always visible, fades out on hover */
   .product-showcase__image--primary {
     opacity: 1;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.45s ease;
   }
 
-  /* Secondary (hover) image sits on top, starts invisible */
+  /* Secondary (hover) image: hidden, fades in on hover */
   .product-showcase__image--secondary {
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.45s ease;
     z-index: 1;
   }
 
-  /* On hover: fade out primary, fade in secondary */
   .product-showcase__card:hover .product-showcase__image--primary {
     opacity: 0;
   }
@@ -228,64 +233,74 @@
     opacity: 1;
   }
 
-  /* SVG placeholder styling */
+  /* SVG placeholder */
   .product-showcase__media-wrapper .placeholder-svg {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
   }
 
-  /* Sale badge */
+  /* --- Sale badge --- */
   .product-showcase__badge {
     position: absolute;
     top: 12px;
     left: 12px;
     z-index: 2;
-    background: #000;
-    color: #fff;
+    background: #D4973A;
+    color: #FAF7F2;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
     font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    padding: 4px 8px;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
+    padding: 4px 10px;
   }
 
-  /* Product info below the image */
+  /* --- Product info --- */
   .product-showcase__info {
-    padding: 12px 10px 16px;
+    padding: 14px 4px 18px;
   }
 
   .product-showcase__product-title {
-    font-size: 0.9rem;
-    font-weight: 500;
-    margin: 0 0 6px;
-    line-height: 1.3;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 400;
+    font-size: 0.95rem;
+    color: #1A1612;
+    margin: 0 0 8px;
+    line-height: 1.4;
     letter-spacing: 0.01em;
+    transition: color 0.2s ease;
   }
 
-  /* Pricing */
+  .product-showcase__card:hover .product-showcase__product-title {
+    color: #1B2B4B;
+  }
+
+  /* --- Pricing --- */
   .product-showcase__price {
     display: flex;
     align-items: center;
     gap: 8px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
     font-size: 0.85rem;
+    letter-spacing: 0.04em;
   }
 
   .product-showcase__price--regular {
-    color: #333;
+    color: #8A9AAA;
   }
 
   .product-showcase__price--compare {
     text-decoration: line-through;
-    color: #999;
+    color: #8A9AAA;
   }
 
   .product-showcase__price--sale {
-    color: #c0392b;
-    font-weight: 600;
+    color: #D4973A;
+    font-weight: 400;
   }
 </style>
 
@@ -342,7 +357,7 @@
       "step": 4,
       "unit": "px",
       "label": "Padding top",
-      "default": 40
+      "default": 56
     },
     {
       "type": "range",
@@ -352,7 +367,7 @@
       "step": 4,
       "unit": "px",
       "label": "Padding bottom",
-      "default": 40
+      "default": 56
     }
   ],
   "presets": [
