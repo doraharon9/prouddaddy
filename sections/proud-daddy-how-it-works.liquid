@@ -1,0 +1,192 @@
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@200;300;400&display=swap" rel="stylesheet">
+
+<style>
+  .pdw-hiw {
+    background-color: #FAF7F2;
+    padding: 100px 20px;
+  }
+
+  .pdw-hiw__inner {
+    max-width: 960px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .pdw-hiw__label {
+    display: block;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
+    font-size: 0.6rem;
+    color: #D4973A;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .pdw-hiw__heading {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: #1B2B4B;
+    margin: 0 0 60px;
+  }
+
+  .pdw-hiw__row {
+    display: grid;
+    grid-template-columns: 1fr 40px 1fr 40px 1fr;
+    align-items: center;
+  }
+
+  .pdw-hiw__card {
+    padding: 0 1.5rem;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 600ms ease-out, transform 600ms ease-out;
+  }
+
+  .pdw-hiw__card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .pdw-hiw__step-num {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-style: italic;
+    color: #D4973A;
+    opacity: 0.2;
+    font-size: 5rem;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .pdw-hiw__icon {
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 1rem;
+  }
+
+  .pdw-hiw__card-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: #1B2B4B;
+    font-size: 1.3rem;
+    margin: 0 0 0.6rem;
+  }
+
+  .pdw-hiw__card-text {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+    color: #8A9AAA;
+    font-size: 0.85rem;
+    line-height: 1.9;
+    margin: 0;
+  }
+
+  .pdw-hiw__arrow {
+    justify-self: center;
+    width: 40px;
+    height: auto;
+    opacity: 0.4;
+  }
+
+  @media (max-width: 640px) {
+    .pdw-hiw__row {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .pdw-hiw__arrow {
+      display: none;
+    }
+
+    .pdw-hiw__card {
+      padding: 0;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+  }
+</style>
+
+<div class="pdw-hiw">
+  <div class="pdw-hiw__inner">
+
+    <span class="pdw-hiw__label">How It Works</span>
+    <h2 class="pdw-hiw__heading">Three simple steps.</h2>
+
+    <div class="pdw-hiw__row">
+
+      <div class="pdw-hiw__card" data-pdw-card data-delay="0">
+        <div class="pdw-hiw__step-num">1</div>
+        <svg class="pdw-hiw__icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M20 27V13M20 13L13 20M20 13L27 20" stroke="#1B2B4B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M10 31H30" stroke="#1B2B4B" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <h3 class="pdw-hiw__card-title">Upload Your Memory</h3>
+        <p class="pdw-hiw__card-text">A photo, a drawing, a heartbeat —<br>anything precious to you.</p>
+      </div>
+
+      <svg class="pdw-hiw__arrow" viewBox="0 0 40 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M4 10H34M27 4L34 10L27 16" stroke="#D4973A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+
+      <div class="pdw-hiw__card" data-pdw-card data-delay="150">
+        <div class="pdw-hiw__step-num">2</div>
+        <svg class="pdw-hiw__icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M16 8C16 6 24 6 24 8L28 6L36 11L28 15L28 33L12 33L12 15L4 11L12 6Z" stroke="#1B2B4B" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+        <h3 class="pdw-hiw__card-title">We Print It</h3>
+        <p class="pdw-hiw__card-text">Your memory is professionally printed<br>on a premium quality shirt.</p>
+      </div>
+
+      <svg class="pdw-hiw__arrow" viewBox="0 0 40 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M4 10H34M27 4L34 10L27 16" stroke="#D4973A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+
+      <div class="pdw-hiw__card" data-pdw-card data-delay="300">
+        <div class="pdw-hiw__step-num">3</div>
+        <svg class="pdw-hiw__icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M20 31C20 31 7 22 7 14C7 10 10 7 14 7C16.5 7 19 9 20 10.5C21 9 23.5 7 26 7C30 7 33 10 33 14C33 22 20 31 20 31Z" stroke="#1B2B4B" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+        <h3 class="pdw-hiw__card-title">Wear It With Pride</h3>
+        <p class="pdw-hiw__card-text">Delivered to your door. Worn close<br>to your heart, every day.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var cards = document.querySelectorAll('[data-pdw-card]');
+    if (!cards.length) return;
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var card = entry.target;
+        var delay = parseInt(card.getAttribute('data-delay') || '0', 10);
+        setTimeout(function () {
+          card.classList.add('is-visible');
+        }, delay);
+        observer.unobserve(card);
+      });
+    }, { threshold: 0.2 });
+
+    cards.forEach(function (card) {
+      observer.observe(card);
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "How It Works",
+  "tag": "section",
+  "class": "proud-daddy-steps",
+  "settings": []
+}
+{% endschema %}
