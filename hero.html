@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proud Daddy — Wear Your Love</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@200;300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background-color: #1B2B4B;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding: clamp(2rem, 8vw, 6rem);
+    }
+
+    .rays-wrap {
+      position: absolute;
+      inset: -50%;
+      pointer-events: none;
+      will-change: transform;
+    }
+
+    .rays {
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent 0,
+        transparent 120px,
+        rgba(212, 151, 58, 0.06) 120px,
+        rgba(212, 151, 58, 0.06) 165px
+      );
+      animation: raysDrift 60s linear infinite;
+    }
+
+    @keyframes raysDrift {
+      from { transform: translate(0, 0); }
+      to   { transform: translate(233px, 233px); }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeUpScale {
+      from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes lineGrow {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+      max-width: 700px;
+    }
+
+    .eyebrow {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 200;
+      font-size: 0.7rem;
+      color: #D4973A;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      animation: fadeUp 700ms cubic-bezier(0.22, 1, 0.36, 1) 0ms both;
+    }
+
+    .headline {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: clamp(3.5rem, 9vw, 7rem);
+      color: #ffffff;
+      line-height: 1.05;
+      animation: fadeUpScale 700ms cubic-bezier(0.22, 1, 0.36, 1) 200ms both;
+    }
+
+    .subline {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      color: rgba(255, 255, 255, 0.6);
+      animation: fadeUp 700ms cubic-bezier(0.22, 1, 0.36, 1) 400ms both;
+    }
+
+    .gold-rule {
+      width: 50px;
+      height: 2px;
+      background-color: #D4973A;
+      transform-origin: left center;
+      animation: lineGrow 700ms cubic-bezier(0.22, 1, 0.36, 1) 600ms both;
+    }
+
+    .body-text {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 300;
+      font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 480px;
+      line-height: 1.8;
+      animation: fadeUp 700ms cubic-bezier(0.22, 1, 0.36, 1) 800ms both;
+    }
+
+    .cta {
+      display: inline-block;
+      background-color: #D4973A;
+      color: #ffffff;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 400;
+      font-size: 0.78rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 1em 2.2em;
+      border-radius: 2px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 180ms ease, transform 150ms ease;
+      animation: fadeUp 700ms cubic-bezier(0.22, 1, 0.36, 1) 1000ms both;
+    }
+
+    .cta:hover {
+      background-color: #be8432;
+      transform: translateY(-2px);
+    }
+
+    .cta:active {
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .rays { animation: none; }
+      .eyebrow, .headline, .subline, .gold-rule, .body-text, .cta {
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero" id="hero">
+    <div class="rays-wrap" id="rays-wrap">
+      <div class="rays"></div>
+    </div>
+    <div class="hero-content">
+      <span class="eyebrow">Prouddaddy.co</span>
+      <h1 class="headline">Wear Your Love</h1>
+      <p class="subline">Because some things are too precious not to wear.</p>
+      <div class="gold-rule"></div>
+      <p class="body-text">Turn your most precious memory into a premium shirt you'll wear every single day.</p>
+      <a href="#" class="cta">Start Your Order →</a>
+    </div>
+  </section>
+  <script>
+    const hero = document.getElementById('hero');
+    const raysWrap = document.getElementById('rays-wrap');
+    let targetX = 0, targetY = 0, currentX = 0, currentY = 0;
+    let rafId = null;
+
+    function lerp(a, b, t) {
+      return a + (b - a) * t;
+    }
+
+    function tick() {
+      currentX = lerp(currentX, targetX, 0.05);
+      currentY = lerp(currentY, targetY, 0.05);
+      raysWrap.style.transform = `translate(${currentX}px, ${currentY}px)`;
+
+      if (Math.abs(currentX - targetX) > 0.01 || Math.abs(currentY - targetY) > 0.01) {
+        rafId = requestAnimationFrame(tick);
+      } else {
+        rafId = null;
+      }
+    }
+
+    function schedule() {
+      if (!rafId) rafId = requestAnimationFrame(tick);
+    }
+
+    hero.addEventListener('mousemove', (e) => {
+      const r = hero.getBoundingClientRect();
+      targetX = ((e.clientX - r.left) / r.width  - 0.5) * 24;
+      targetY = ((e.clientY - r.top)  / r.height - 0.5) * 24;
+      schedule();
+    });
+
+    hero.addEventListener('mouseleave', () => {
+      targetX = 0;
+      targetY = 0;
+      schedule();
+    });
+  </script>
+</body>
+</html>
