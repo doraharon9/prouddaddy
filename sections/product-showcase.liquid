@@ -1,0 +1,364 @@
+{{ 'product-showcase.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .product-showcase {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+{%- endstyle -%}
+
+<div class="product-showcase page-width">
+
+  {%- if section.settings.title != blank or section.settings.show_all_link -%}
+    <div class="product-showcase__header">
+      {%- if section.settings.title != blank -%}
+        <h2 class="product-showcase__title">{{ section.settings.title | escape }}</h2>
+      {%- endif -%}
+      {%- if section.settings.show_all_link and section.settings.collection != blank -%}
+        <a href="{{ collections[section.settings.collection].url }}" class="product-showcase__view-all">
+          {{ section.settings.view_all_label | default: 'Shop all' }} &rarr;
+        </a>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  {%- assign featured_collection = collections[section.settings.collection] -%}
+  {%- assign products_to_show = section.settings.products_to_show -%}
+
+  {%- if featured_collection != blank and featured_collection.products.size > 0 -%}
+    <ul class="product-showcase__grid" role="list">
+      {%- for product in featured_collection.products limit: products_to_show -%}
+        <li class="product-showcase__item">
+          <a href="{{ product.url }}" class="product-showcase__card" aria-label="{{ product.title | escape }}">
+
+            {%- comment -%} Image area {%- endcomment -%}
+            <div class="product-showcase__media-wrapper">
+
+              {%- comment -%} Sale badge {%- endcomment -%}
+              {%- if product.compare_at_price > product.price -%}
+                <span class="product-showcase__badge">SALE</span>
+              {%- endif -%}
+
+              {%- comment -%} Primary image {%- endcomment -%}
+              {%- if product.featured_image != blank -%}
+                <img
+                  class="product-showcase__image product-showcase__image--primary"
+                  src="{{ product.featured_image | image_url: width: 600 }}"
+                  alt="{{ product.featured_image.alt | default: product.title | escape }}"
+                  width="600"
+                  height="{{ 600 | divided_by: product.featured_image.aspect_ratio | round }}"
+                  loading="lazy"
+                >
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag: 'product-showcase__image product-showcase__image--primary placeholder-svg' }}
+              {%- endif -%}
+
+              {%- comment -%} Secondary (hover) image — shown on hover if a second image exists {%- endcomment -%}
+              {%- if product.images.size > 1 -%}
+                <img
+                  class="product-showcase__image product-showcase__image--secondary"
+                  src="{{ product.images[1] | image_url: width: 600 }}"
+                  alt="{{ product.images[1].alt | default: product.title | escape }}"
+                  width="600"
+                  height="{{ 600 | divided_by: product.images[1].aspect_ratio | round }}"
+                  loading="lazy"
+                >
+              {%- endif -%}
+
+            </div>
+
+            {%- comment -%} Product info {%- endcomment -%}
+            <div class="product-showcase__info">
+              <p class="product-showcase__product-title">{{ product.title | escape }}</p>
+
+              <div class="product-showcase__price">
+                {%- if product.compare_at_price > product.price -%}
+                  <span class="product-showcase__price--compare">
+                    {{- product.compare_at_price | money -}}
+                  </span>
+                  <span class="product-showcase__price--sale">
+                    {{- product.price | money -}}
+                  </span>
+                {%- else -%}
+                  <span class="product-showcase__price--regular">
+                    {{- product.price | money -}}
+                  </span>
+                {%- endif -%}
+              </div>
+            </div>
+
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+
+  {%- else -%}
+    {%- comment -%} Placeholder cards shown in the editor when no collection is selected {%- endcomment -%}
+    <ul class="product-showcase__grid" role="list">
+      {%- for i in (1..4) -%}
+        <li class="product-showcase__item">
+          <div class="product-showcase__card">
+            <div class="product-showcase__media-wrapper">
+              {{ 'product-' | append: i | placeholder_svg_tag: 'product-showcase__image product-showcase__image--primary placeholder-svg' }}
+            </div>
+            <div class="product-showcase__info">
+              <p class="product-showcase__product-title">{{ 'onboarding.product_title' | t }}</p>
+              <div class="product-showcase__price">
+                <span class="product-showcase__price--regular">{{ 1999 | money }}</span>
+              </div>
+            </div>
+          </div>
+        </li>
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+
+</div>
+
+<style>
+  /* =============================================
+     Product Showcase Section Styles
+     Inspired by Oscar de la Renta product grid
+     ============================================= */
+
+  .product-showcase__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 28px;
+  }
+
+  .product-showcase__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .product-showcase__view-all {
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: inherit;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+    transition: opacity 0.2s ease;
+  }
+
+  .product-showcase__view-all:hover {
+    opacity: 0.6;
+  }
+
+  /* Grid — 4 columns on desktop, 2 on tablet, 1 on mobile */
+  .product-showcase__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  @media screen and (max-width: 989px) {
+    .product-showcase__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+  }
+
+  @media screen and (max-width: 479px) {
+    .product-showcase__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+  }
+
+  /* Card */
+  .product-showcase__card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: #f9f9f9;
+  }
+
+  .product-showcase__card:hover .product-showcase__product-title {
+    text-decoration: underline;
+  }
+
+  /* Image container — fixed aspect ratio so all cards line up */
+  .product-showcase__media-wrapper {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    background: #efefef;
+  }
+
+  /* Both images fill the container */
+  .product-showcase__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Primary image is always visible */
+  .product-showcase__image--primary {
+    opacity: 1;
+    transition: opacity 0.4s ease;
+  }
+
+  /* Secondary (hover) image sits on top, starts invisible */
+  .product-showcase__image--secondary {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+  }
+
+  /* On hover: fade out primary, fade in secondary */
+  .product-showcase__card:hover .product-showcase__image--primary {
+    opacity: 0;
+  }
+
+  .product-showcase__card:hover .product-showcase__image--secondary {
+    opacity: 1;
+  }
+
+  /* SVG placeholder styling */
+  .product-showcase__media-wrapper .placeholder-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Sale badge */
+  .product-showcase__badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 2;
+    background: #000;
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    padding: 4px 8px;
+    text-transform: uppercase;
+  }
+
+  /* Product info below the image */
+  .product-showcase__info {
+    padding: 12px 10px 16px;
+  }
+
+  .product-showcase__product-title {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin: 0 0 6px;
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+  }
+
+  /* Pricing */
+  .product-showcase__price {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+  }
+
+  .product-showcase__price--regular {
+    color: #333;
+  }
+
+  .product-showcase__price--compare {
+    text-decoration: line-through;
+    color: #999;
+  }
+
+  .product-showcase__price--sale {
+    color: #c0392b;
+    font-weight: 600;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Product Showcase",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Our Collection"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection to display"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 4,
+      "label": "Number of products to show"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_all_link",
+      "label": "Show 'Shop all' link",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "view_all_label",
+      "label": "Shop all link text",
+      "default": "Shop all"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Showcase"
+    }
+  ]
+}
+{% endschema %}
