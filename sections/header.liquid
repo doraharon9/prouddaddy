@@ -119,6 +119,10 @@
       justify-content: center;
     }
   }
+
+  .header-wrapper {
+    transition: opacity 0.4s ease;
+  }
 {%- endstyle -%}
 
 <script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
@@ -407,6 +411,13 @@
 
     onScroll() {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      // Opacity effect: reduce when scrolled down, restore only at the very top
+      if (scrollTop <= 0) {
+        this.style.opacity = '1';
+      } else {
+        this.style.opacity = '0.8';
+      }
 
       if (this.predictiveSearch && this.predictiveSearch.isOpen) return;
 
