@@ -62,60 +62,10 @@
       "type": "_blocks",
       "settings": {}
     },
-    "image_banner_rqey4E": {
-      "type": "image-banner",
-      "blocks": {
-        "heading_CFPEKP": {
-          "type": "heading",
-          "settings": {
-            "heading": "Image banner",
-            "heading_size": "h1"
-          }
-        },
-        "text_hyiBcj": {
-          "type": "text",
-          "settings": {
-            "text": "Give customers details about the banner image(s) or content on the template.",
-            "text_style": "body"
-          }
-        },
-        "buttons_JUUtH6": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Button label",
-            "button_link_1": "",
-            "button_style_secondary_1": false,
-            "button_label_2": "Button label",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading_CFPEKP",
-        "text_hyiBcj",
-        "buttons_JUUtH6"
-      ],
-      "name": "t:sections.image-banner.presets.name",
-      "settings": {
-        "image": "shopify://shop_images/Men_Bay.png",
-        "image_2": "shopify://shop_images/Men_Orchid.png",
-        "image_overlay_opacity": 0,
-        "image_height": "medium",
-        "desktop_content_position": "middle-center",
-        "show_text_box": true,
-        "desktop_content_alignment": "center",
-        "color_scheme": "",
-        "image_behavior": "none",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": true,
-        "show_text_below": true
-      }
-    },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "title": "Who you are?",
+        "title": "Our Best Sellers.",
         "heading_size": "h1",
         "description": "",
         "show_description": false,
@@ -139,12 +89,105 @@
         "padding_top": 44,
         "padding_bottom": 36
       }
+    },
+    "image_banner_Q9kMPN": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_eqftcU": {
+          "type": "heading",
+          "settings": {
+            "heading": "There's a moment every parent knows.",
+            "heading_size": "h1"
+          }
+        },
+        "text_Vz86XB": {
+          "type": "text",
+          "settings": {
+            "text": "The first time you hold them. The drawing they made you that's still on the fridge three years later. The photo on your phone you've looked at a thousand times. You'd tattoo it all on your skin if you could - just to keep it close. Just to say, without saying a word, <em>this is what I'm made of. </em>That's why Proud Daddy exists. We take the moments that made you a parent - a photo, a drawing, a heartbeat, a handprint - and print them on a shirt you'll actually wear. Not a frame on the wall. Not a mug in the cupboard. Something you put on in the morning and carry with you all day long. Something that says, quietly and proudly, <em>I am theirs, and they are mine.</em>For the dads who don't say it enough. For the moms who feel it in everything they do. For every parent who has ever looked at their child and thought - I would do anything to freeze this moment.Now you can wear it instead.",
+            "text_style": "subtitle"
+          }
+        }
+      },
+      "block_order": [
+        "heading_eqftcU",
+        "text_Vz86XB"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/ChatGPT_Image_May_31_2026_10_30_48_PM.png",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": true
+      }
+    },
+    "slideshow_9VUAPT": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_BfYUkk": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/dad_dugther_img1.png",
+            "heading": "Image slide",
+            "heading_size": "h1",
+            "subheading": "Tell your brand's story through images",
+            "button_label": "Button label",
+            "link": "",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": true,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "",
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_4Q77GN": {
+          "type": "slide",
+          "settings": {
+            "heading": "Image slide",
+            "heading_size": "h1",
+            "subheading": "Tell your brand's story through images",
+            "button_label": "Button label",
+            "link": "",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": true,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "",
+            "text_alignment_mobile": "center"
+          }
+        }
+      },
+      "block_order": [
+        "slide_BfYUkk",
+        "slide_4Q77GN"
+      ],
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "layout": "full_bleed",
+        "slide_height": "medium",
+        "slider_visual": "counter",
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_text_below": true,
+        "accessibility_info": "Slideshow about our brand"
+      }
     }
   },
   "order": [
     "image_banner",
     "17799119960bd081e4",
     "featured_collection",
-    "image_banner_rqey4E"
+    "image_banner_Q9kMPN",
+    "slideshow_9VUAPT"
   ]
 }
