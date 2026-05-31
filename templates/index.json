@@ -134,10 +134,10 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/dad_dugther_img1.png",
-            "heading": "Image slide",
+            "heading": "For the Dads",
             "heading_size": "h1",
-            "subheading": "Tell your brand's story through images",
-            "button_label": "Button label",
+            "subheading": "who don't say enough \"I Love You\"",
+            "button_label": "Proud Daddy Collection",
             "link": "",
             "button_style_secondary": false,
             "box_align": "middle-center",
@@ -151,10 +151,11 @@
         "slide_4Q77GN": {
           "type": "slide",
           "settings": {
-            "heading": "Image slide",
+            "image": "shopify://shop_images/mom_boy_img1.png",
+            "heading": "For the Moms",
             "heading_size": "h1",
-            "subheading": "Tell your brand's story through images",
-            "button_label": "Button label",
+            "subheading": "who feel it in everything they do.",
+            "button_label": "Proud Mommy Collection",
             "link": "",
             "button_style_secondary": false,
             "box_align": "middle-center",
