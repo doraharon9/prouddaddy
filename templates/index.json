@@ -182,62 +182,6 @@
         "show_text_below": true,
         "accessibility_info": "Slideshow about our brand"
       }
-    },
-    "slideshow_hNGDyT": {
-      "type": "slideshow",
-      "blocks": {
-        "slide_MM9Cei": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/dad_dugther_img1.png",
-            "heading": "For the Dads",
-            "heading_size": "h1",
-            "subheading": "who don't say enough \"I Love You\"",
-            "button_label": "Proud Daddy Collection",
-            "link": "",
-            "button_style_secondary": false,
-            "box_align": "middle-center",
-            "show_text_box": true,
-            "text_alignment": "center",
-            "image_overlay_opacity": 0,
-            "color_scheme": "",
-            "text_alignment_mobile": "center"
-          }
-        },
-        "slide_fFNW8L": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/mom_boy_img1.png",
-            "heading": "For the Moms",
-            "heading_size": "h1",
-            "subheading": "who feel it in everything they do.",
-            "button_label": "Proud Mommy Collection",
-            "link": "",
-            "button_style_secondary": false,
-            "box_align": "middle-center",
-            "show_text_box": true,
-            "text_alignment": "center",
-            "image_overlay_opacity": 0,
-            "color_scheme": "",
-            "text_alignment_mobile": "center"
-          }
-        }
-      },
-      "block_order": [
-        "slide_MM9Cei",
-        "slide_fFNW8L"
-      ],
-      "name": "t:sections.slideshow.presets.name",
-      "settings": {
-        "layout": "full_bleed",
-        "slide_height": "medium",
-        "slider_visual": "counter",
-        "auto_rotate": false,
-        "change_slides_speed": 5,
-        "image_behavior": "none",
-        "show_text_below": true,
-        "accessibility_info": "Slideshow about our brand"
-      }
     }
   },
   "order": [
@@ -245,7 +189,6 @@
     "17799119960bd081e4",
     "featured_collection",
     "image_banner_Q9kMPN",
-    "slideshow_9VUAPT",
-    "slideshow_hNGDyT"
+    "slideshow_9VUAPT"
   ]
 }
